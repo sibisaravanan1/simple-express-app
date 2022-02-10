@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: FranzDiebold/github-env-vars-action@v2.3.1
     - name: Set env variable
       run: |
         echo "MY_IMAGE_TAG=v1-${CI_REF_NAME_SLUG}-${CI_SHA_SHORT}" >> "$GITHUB_ENV"
-    - uses: FranzDiebold/github-env-vars-action@v2.3.1
+
     - name: Print environment variables
       run: env
     #- uses: actions/checkout@v2
