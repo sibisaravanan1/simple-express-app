@@ -5,10 +5,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
-env:
-  IMAGE_TAG: "v1-${CI_REF_NAME_SLUG}-${CI_SHA_SHORT}"
-
 jobs:
 
   build:
@@ -16,9 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set env variable
+      run: |
+        echo "MY_IMAGE_TAG=v1-${CI_REF_NAME_SLUG}-${CI_SHA_SHORT}" >> "$GITHUB_ENV"
     - uses: FranzDiebold/github-env-vars-action@v2.3.1
     - name: Print environment variables
       run: env
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    #- uses: actions/checkout@v2
+    #- name: Build the Docker image
+    #  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
