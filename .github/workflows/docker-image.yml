@@ -19,6 +19,6 @@ jobs:
 
     - name: Print environment variables
       run: env
-    #- uses: actions/checkout@v2
-    #- name: Build the Docker image
-    #  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$MY_IMAGE_TAG
